@@ -6,7 +6,6 @@ import styles from '../styles/Nav.module.css';
 const Nav = () => {
     const { amount } = useSelector(state => state.cartItems);
     const router = useRouter();
-    console.log(router.pathname)
     return (
         <div className='sticky top-0 left-0 z-40 '>
             <div className="bg-[#10B981] py-4">
@@ -29,7 +28,7 @@ const Nav = () => {
             <div className="dark:bg-[#292E46] bg-opacity-80 backdrop-blur-3xl shadow-lg dark:shadow-lg dark:shadow-gray-800">
                 <nav className='flex gap-2 max-w-[1280px] mx-auto py-2 mb-4'>
                     <Link href="/" ><a className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded">Home</a></Link>
-                    <Link href="/products"><a className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded $">Products</a></Link>
+                    <Link href="/all-products"><a className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded $">Products</a></Link>
                     <Link href="/blog"><a className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ">Blogs</a></Link>
                     <Link href="/about"><a className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ">About</a></Link>
                     <Link href="/contact"><a className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ">Contact</a></Link>
