@@ -1,0 +1,18 @@
+.cartIcon {
+    position: relative;
+}
+
+.cartAmount {
+    position: absolute;
+    top: -4px;
+    right: 27px;
+    color: white;
+    font-size: .9rem;
+    background: #c535b0;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
