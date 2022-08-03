@@ -30,7 +30,12 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-h1, h2, h3, h4,h5{
+
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 0;
   padding: 0;
 }
@@ -69,19 +74,20 @@ button {
   button {
     background-color: #6a71ff;
     color: #fff;
-
   }
-
   button:focus {
     outline: none;
   }
-
-
 }
-
-
-
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.product-image img {
+  transition: .5s;
+}
+
+.product-image img:hover {
+  transform: scale(1.08);
+}

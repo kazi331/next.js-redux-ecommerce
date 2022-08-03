@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../redux/features/cartSlice';
 import { addToCart } from './icons';
@@ -11,9 +10,9 @@ const SingleProduct = ({product}) => {
     return (
         <div className="group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center">
             <div className="p-3 bg-gray-100 dark:bg-[#2F334D] rounded-lg hover:shadow-lg">
-                <a href="#" className="block  h-48 rounded overflow-hidden">
+                <a className="block  h-48 rounded overflow-hidden product-image">
                     {/* <img alt="ecommerce" className="object-cover object-center w-full h-full block" width="200" src={image} /> */}
-                    <Image className="object-contain w-full h-full " width={500} height={500} src={image} alt={title} />
+                    <Image className="" width={500} height={500} src={image} alt={title} />
                 </a>
                 <div className="mt-4">
                     <h3 className=" text-xs tracking-widest title-font mb-1">{type}</h3>
