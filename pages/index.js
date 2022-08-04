@@ -7,7 +7,7 @@ const Home = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getProducts())
-    }, []);
+    }, [dispatch]);
     const { products, loading } = useSelector(state => state.products);
     if (loading) {
         return (<h2>Loading.... </h2>)
