@@ -9,7 +9,7 @@ const CartItem = ({ item }) => {
     const dispatch = useDispatch();
     return (
         <div className="p-2  w-full">
-            <div className="h-full flex items-center justify-between bg-gray-700 dark:bg-opacity-30 p-4 rounded-lg dark:text-gray-200">
+            <div className="h-full flex items-center justify-between bg-gray-200 dark:bg-gray-700 dark:bg-opacity-30 p-4 rounded-lg dark:text-gray-200">
                 <div className="flex gap-4 w-full">
                     <Image className="w-14 h-14 object-contain rounded-full" width={100} height={100} src={image} alt={title} />
                     <div className="flex flex-col justify-center grow w-full">
