@@ -10,7 +10,6 @@ const SingleProduct = ({ product }) => {
     const { cartItems } = useSelector(state => state.cartItems);
     const { image, type, price, title, _id, imtemCount } = product;
     const existOnCart = cartItems.find(item => item._id === _id);
-    console.log(existOnCart?.imtemCount)
     return (
         <div className="group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center">
             <div className="p-3 bg-gray-100 dark:bg-[#2F334D] rounded-lg hover:shadow-lg">

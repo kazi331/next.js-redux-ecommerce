@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartIcon, kachaBazar, notificationIcon, searchIcon, userIcon } from '../components/icons';
 import styles from '../styles/Nav.module.css';
+import { openCart } from '../redux/features/cartSlice';
 const Nav = () => {
     const { amount } = useSelector(state => state.cartItems);
+    const dispatch = useDispatch();
     const router = useRouter();
     const navs = [
         {id: 1, slug: '/', title: 'Home'},
@@ -27,8 +29,8 @@ const Nav = () => {
 
                     <div className='flex gap-2 text-white'>
                         <button className=''> {notificationIcon} </button>
-                        <Link href="/cart" ><a><span className={styles.cartIcon}>{cartIcon}</span> <sup className={styles.cartAmount}>{amount}</sup></a></Link>
-                        <button className=''> {userIcon} </button>
+                        <button onClick={()=> dispatch(openCart())}><span className={styles.cartIcon}>{cartIcon}</span> <sup className={styles.cartAmount}>{amount}</sup></button>
+                        <button > {userIcon} </button>
                     </div>
                 </header>
             </div>
@@ -37,11 +39,6 @@ const Nav = () => {
                     {
                         navs.map(nav => <Link key={nav.id} href={nav.slug}><a className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === nav.slug && "bg-[#10B981] bg-opacity-20 dark:bg-[#10B981]"}`}>{nav.title}</a></Link> )
                     }
-                    {/* <Link href="/"><a className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === "/" && "bg-gray-700"}`}>Home</a></Link>
-                    <Link href="/all-products"><a className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === "/all-products" && "bg-gray-700"}`}>Products</a></Link>
-                    <Link href="/blog"><a className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === "/blog" && "bg-gray-700"}`}>Blogs</a></Link>
-                    <Link href="/about"><a className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === "/about" && "bg-gray-700"}`}>About</a></Link>
-                    <Link href="/contact"><a className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === "/contact" && "bg-gray-700"}`}>Contact</a></Link> */}
                 </nav>
             </div>
         </div>
