@@ -1,11 +1,11 @@
+import Image from 'next/image';
 import React from 'react';
-import Image from 'next/image'
 import { useDispatch } from 'react-redux';
-import { increaseItem, decreaseItem, removeItem } from '../redux/features/cartSlice';
 import { chevronDown, chevronUp } from '../components/icons';
+import { decreaseItem, increaseItem, removeItem } from '../redux/features/cartSlice';
 
 const CartItem = ({ item }) => {
-    const { category, title, id, image, price, itemAmount } = item;
+    const { category, title, _id, image, price, imtemCount } = item;
     const dispatch = useDispatch();
     return (
         <div className="p-2  w-full">
@@ -17,14 +17,14 @@ const CartItem = ({ item }) => {
                         <div className="flex-grow ">
                             <h2 className=" title-font font-medium">{title.slice(0, 80)}</h2>
                             <p>${price}</p>
-                            <button onClick={() => dispatch(removeItem(id))} className='bg-[#10B981] px-1'>Remove</button>
+                            <button onClick={() => dispatch(removeItem(_id))} className='bg-[#10B981] px-1'>Remove</button>
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                    <button onClick={() => dispatch(increaseItem(id))} className='bg-[#10B981]'>{chevronUp}</button>
-                    <span>{itemAmount}</span>
-                    <button onClick={() => itemAmount > 1 ? dispatch(decreaseItem(id)) : dispatch(removeItem(id)) } className='bg-[#10B981]'>{chevronDown}</button>
+                    <button onClick={() => dispatch(increaseItem(_id))} className='bg-[#10B981]'>{chevronUp}</button>
+                    <span>{imtemCount}</span>
+                    <button onClick={() => imtemCount > 1 ? dispatch(decreaseItem(_id)) : dispatch(removeItem(_id)) } className='bg-[#10B981]'>{chevronDown}</button>
                 </div>
             </div>
         </div>

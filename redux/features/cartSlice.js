@@ -1,13 +1,14 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 
+const initialState = {
+    cartItems: [],
+    amount: 0,
+    total: 0
+}
 const cartSlice = createSlice({
     name: 'cart',
-    initialState: {
-        cartItems: [],
-        amount: 0,
-        total: 0
-    },
+    initialState,
     reducers: {
         addItem: (state, action) => {
             state.cartItems = [...state.cartItems, action.payload]
@@ -15,17 +16,17 @@ const cartSlice = createSlice({
         },
         increaseItem: (state, action) => {
             const itemId = action.payload;
-            const productItem = state.cartItems.find(item => itemId === item.id)
-            productItem.itemAmount += 1;
+            const productItem = state.cartItems.find(item => itemId === item._id)
+            productItem.imtemCount += 1;
         },
         decreaseItem: (state, action) => {
             const itemId = action.payload;
-            const productItem = state.cartItems.find(item => itemId === item.id)
-            productItem.itemAmount -= 1;
+            const productItem = state.cartItems.find(item => itemId === item._id)
+            productItem.imtemCount -= 1;
         },
         removeItem: (state, action) => {
             const itemId = action.payload;
-          state.cartItems =  state.cartItems.filter(item => itemId !== item.id);
+            state.cartItems = state.cartItems.filter(item => itemId !== item._id);
         },
     }
 });

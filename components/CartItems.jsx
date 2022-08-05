@@ -17,7 +17,7 @@ const CartItems = () => {
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Cart Items</h1>
                     </div>
                     <div className="flex flex-wrap -m-2">
-                        {cartItems && cartItems.map(item => <CartItem item={item} key={item.id} />)}
+                        {cartItems && cartItems.map(item => <CartItem item={item} key={item._id} />)}
                     </div>
                 </div>
             </section>
