@@ -29,7 +29,7 @@ const Nav = () => {
 
                     <div className='flex gap-2 text-white'>
                         <button className=''> {notificationIcon} </button>
-                        <button onClick={()=> dispatch(openCart())}><span className={styles.cartIcon}>{cartIcon}</span> <sup className={styles.cartAmount}>{amount}</sup></button>
+                        <button onClick={()=> dispatch(openCart())}><span className="relative">{cartIcon}</span> <sup className={styles.cartAmount}>{amount}</sup></button>
                         <button > {userIcon} </button>
                     </div>
                 </header>
