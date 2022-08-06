@@ -1,19 +1,23 @@
-import { Provider } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import Layout from '../components/Layout'
-import Nav from '../components/Nav'
-import store from '../redux/store/store'
+import { setLocalItems } from '../redux/features/cartSlice'
+import { getProducts } from '../redux/features/productSlice'
+import { wrapper } from '../redux/store/store'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
-
+  const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProducts());
+        dispatch(setLocalItems())
+    }, [dispatch]);
 
   return (
-    <Provider store={store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Provider>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)

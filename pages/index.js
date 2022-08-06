@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import {  useSelector } from "react-redux";
 import CartItems from "../components/CartItems";
 import SingleProduct from "../components/SingleProduct";
-import { filtered, getProducts } from "../redux/features/productSlice";
 import Head from "next/head";
 
 const Home = () => {
@@ -13,10 +12,7 @@ const Home = () => {
     const [page, setPage] = useState(0)
     const [perPage, setPerPage] = useState(10)
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getProducts());
-    }, [dispatch]);
+    
 
     const numOfPage = Math.ceil(searchedProducts.length / perPage);
     const arr = [...Array(numOfPage).keys()];
