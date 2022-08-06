@@ -6,10 +6,9 @@ import IncreaseDecrease from './cart-components/IncreaseDecrease';
 
 
 const SingleProduct = ({ product }) => {
-    const dispatch = useDispatch();
     const { cartItems } = useSelector(state => state.cartItems);
-    const { image, type, price, title, _id, itemCount } = product;
-    const existOnCart = cartItems.find(item => item._id === _id);
+    const { image, type, price, title, _id } = product;
+
     return (
         <div className="group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center">
             <div className="p-3 bg-gray-100 dark:bg-[#2F334D] rounded-lg hover:shadow-lg">
@@ -22,7 +21,7 @@ const SingleProduct = ({ product }) => {
                     <div className="flex items-center justify-between">
                         <p className="mt-1">${price}</p>
                         {
-                            cartItems.find(item => item._id === _id) ? <IncreaseDecrease itemCount={existOnCart?.itemCount} _id={_id} /> : <AddToCart product={product} />
+                            cartItems.find(item => item._id === _id) ? <IncreaseDecrease product={product} _id={_id} /> : <AddToCart product={product} />
                         }
                     </div>
                 </div>

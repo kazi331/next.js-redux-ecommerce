@@ -3,14 +3,17 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartIcon, kachaBazar, notificationIcon, searchIcon, userIcon } from '../components/icons';
-import { loadCartItems, openCart } from '../redux/features/cartSlice';
+import { openCart } from '../redux/features/cartSlice';
 import { filtered } from '../redux/features/productSlice';
 import { search } from '../redux/features/searchFilter';
 import styles from '../styles/Nav.module.css';
 const Nav = () => {
-    const { amount } = useSelector(state => state.cartItems);
     const dispatch = useDispatch();
     const router = useRouter();
+
+    const { cartItems } = useSelector(state => state.cartItems);
+    const totalItems = cartItems.reduce((prev, item) => prev + item.quantity, 0)
+
     const navs = [
         { id: 1, slug: '/', title: 'Home' },
         { id: 2, slug: '/products', title: 'Products' },
@@ -18,9 +21,6 @@ const Nav = () => {
         { id: 4, slug: '/about', title: 'About' },
         { id: 5, slug: '/contact', title: 'Contact' }
     ]
-    useEffect(() => {
-        dispatch(loadCartItems())
-    }, [dispatch]);
 
     return (
         <div className='sticky top-0 left-0 z-40'>
@@ -39,7 +39,12 @@ const Nav = () => {
 
                     <div className='flex gap-2 text-white'>
                         <button className=''> {notificationIcon} </button>
-                        <button onClick={() => dispatch(openCart())}><span className="relative">{cartIcon}</span> <sup className={styles.cartAmount}>{amount}</sup></button>
+                        <button onClick={() => dispatch(openCart())}>
+                            <span className="relative">{cartIcon}</span> 
+                            <sup className={styles.cartAmount}>
+                                {totalItems}
+                            </sup>
+                        </button>
                         <button > {userIcon} </button>
                     </div>
                 </header>
