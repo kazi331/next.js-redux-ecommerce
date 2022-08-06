@@ -5,7 +5,7 @@ import { minusIcon, plusIcon, trashIcon } from '../components/icons';
 import { addItem, removeItem, deleteItem } from '../redux/features/cartSlice';
 
 const CartItem = ({ item }) => {
-    const { title, _id, image, price, itemTotal, quantity } = item;
+    const { title, _id, image, price, quantity } = item;
     const dispatch = useDispatch();
 
     return (
@@ -17,7 +17,7 @@ const CartItem = ({ item }) => {
                         <h2 className="title-font font-medium">{title}</h2>
                         <p className='font-light'>${price} <small>per item</small></p>
                         <div className="flex items-center justify-between ">
-                            <p className='font-bold'>${itemTotal}</p>
+                            <p className='font-bold'>${quantity * price}</p>
                             <div className="flex gap-2">
                                 <button onClick={() => dispatch(removeItem(item))} className='bg-[#10B981] text-white'>{minusIcon}</button>
                                 <span>{quantity}</span>

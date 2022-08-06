@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/features/cartSlice";
 import { addToCartIcon } from "../icons";
 
-const AddToCart = ({product}) => {
+const AddToCart = ({ product }) => {
     const dispatch = useDispatch();
     return (
         <>
