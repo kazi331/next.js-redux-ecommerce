@@ -1,20 +1,24 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartIcon, kachaBazar, notificationIcon, searchIcon, userIcon } from '../components/icons';
-import { openCart } from '../redux/features/cartSlice';
+import { loadCartItems, openCart } from '../redux/features/cartSlice';
 import styles from '../styles/Nav.module.css';
 const Nav = () => {
     const { amount } = useSelector(state => state.cartItems);
     const dispatch = useDispatch();
     const router = useRouter();
     const navs = [
-        {id: 1, slug: '/', title: 'Home'},
-        {id: 2, slug: '/products', title: 'Products'},
-        {id: 3, slug: '/blogs', title: 'Blogs'},
-        {id: 4, slug: '/about', title: 'About'},
-        {id: 5, slug: '/contact', title: 'Contact'}
+        { id: 1, slug: '/', title: 'Home' },
+        { id: 2, slug: '/products', title: 'Products' },
+        { id: 3, slug: '/blogs', title: 'Blogs' },
+        { id: 4, slug: '/about', title: 'About' },
+        { id: 5, slug: '/contact', title: 'Contact' }
     ]
+    useEffect(() => {
+        dispatch(loadCartItems())
+    }, [dispatch])
     return (
         <div className='sticky top-0 left-0 z-40'>
             <div className="bg-[#10B981] py-4">
@@ -29,7 +33,7 @@ const Nav = () => {
 
                     <div className='flex gap-2 text-white'>
                         <button className=''> {notificationIcon} </button>
-                        <button onClick={()=> dispatch(openCart())}><span className="relative">{cartIcon}</span> <sup className={styles.cartAmount}>{amount}</sup></button>
+                        <button onClick={() => dispatch(openCart())}><span className="relative">{cartIcon}</span> <sup className={styles.cartAmount}>{amount}</sup></button>
                         <button > {userIcon} </button>
                     </div>
                 </header>
@@ -37,7 +41,7 @@ const Nav = () => {
             <div className="dark:bg-[#292E46] bg-opacity-80 dark:bg-opacity-80 backdrop-blur-2xl shadow-lg dark:shadow-lg dark:shadow-gray-800">
                 <nav className='flex gap-2 max-w-[1280px] mx-auto py-2 mb-4 px-4'>
                     {
-                        navs.map(nav => <Link key={nav.id} href={nav.slug}><a className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === nav.slug && "bg-[#10B981] bg-opacity-20 dark:bg-[#10B981]"}`}>{nav.title}</a></Link> )
+                        navs.map(nav => <Link key={nav.id} href={nav.slug}><a className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === nav.slug && "bg-[#10B981] bg-opacity-20 dark:bg-[#10B981]"}`}>{nav.title}</a></Link>)
                     }
                 </nav>
             </div>
