@@ -2,10 +2,10 @@ import Image from 'next/image';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { minusIcon, plusIcon, trashIcon } from '../components/icons';
-import { decreaseItem, increaseItem, removeItem } from '../redux/features/cartSlice';
+import { addItem, removeItem, deleteItem } from '../redux/features/cartSlice';
 
 const CartItem = ({ item }) => {
-    const { category, title, _id, image, price, itemCount, itemTotal } = item;
+    const { title, _id, image, price, quantity } = item;
     const dispatch = useDispatch();
 
     return (
@@ -17,13 +17,13 @@ const CartItem = ({ item }) => {
                         <h2 className="title-font font-medium">{title}</h2>
                         <p className='font-light'>${price} <small>per item</small></p>
                         <div className="flex items-center justify-between ">
-                            <p className='font-bold'>${itemTotal}</p>
+                            <p className='font-bold'>${quantity * price}</p>
                             <div className="flex gap-2">
-                                <button onClick={() => itemCount > 1 ? dispatch(decreaseItem(_id)) : dispatch(removeItem(_id))} className='bg-[#10B981] text-white'>{minusIcon}</button>
-                                <span>{itemCount}</span>
-                                <button onClick={() => dispatch(increaseItem(_id))} className='bg-[#10B981] text-white'>{plusIcon}</button>
+                                <button onClick={() => dispatch(removeItem(item))} className='bg-[#10B981] text-white'>{minusIcon}</button>
+                                <span>{quantity}</span>
+                                <button onClick={() => dispatch(addItem(item))} className='bg-[#10B981] text-white'>{plusIcon}</button>
                             </div>
-                            <button onClick={() => dispatch(removeItem(_id))} className='px-1 text-red-400'>{trashIcon}</button>
+                            <button onClick={() => dispatch(deleteItem(_id))} className='px-1 text-red-400'>{trashIcon}</button>
                         </div>
                     </div>
                 </div>

@@ -6,53 +6,44 @@ const initialState = {
     total: 0,
     showCart: false,
 }
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+        setLocalItems: (state, action) => {
+            state.cartItems = JSON.parse(localStorage.getItem('cart') || '[]')
+        },
         addItem: (state, action) => {
-            state.cartItems = [...state.cartItems, action.payload];
-            state.total = state.cartItems.reduce((preValue, item) => preValue + item.itemTotal, 0)
-            state.amount = state.cartItems.reduce((preValue, item) => preValue + item.itemCount, 0);
-            localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-            localStorage.setItem('amount', JSON.stringify(state.amount))
-            localStorage.setItem('total', JSON.stringify(state.total))
-        },
-        increaseItem: (state, action) => {
-            const itemId = action.payload;
-            const productItem = state.cartItems.find(item => itemId === item._id);
-            productItem.itemCount += 1;
-            productItem.itemTotal = productItem.price * productItem.itemCount;
-            state.total = state.cartItems.reduce((preValue, item) => preValue + item.itemTotal, 0)
-            state.amount = state.cartItems.reduce((preValue, item) => preValue + item.itemCount, 0)
-            localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-            localStorage.setItem('amount', JSON.stringify(state.amount))
-            localStorage.setItem('total', JSON.stringify(state.total))
-        },
-        decreaseItem: (state, action) => {
-            const itemId = action.payload;
-            const productItem = state.cartItems.find(item => itemId === item._id)
-            productItem.itemCount -= 1;
-            productItem.itemTotal = productItem.price * productItem.itemCount;
-            state.total = state.cartItems.reduce((preValue, item) => preValue + item.itemTotal, 0)
-            state.amount = state.cartItems.reduce((preValue, item) => preValue + item.itemCount, 0)
-            localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-            localStorage.setItem('amount', JSON.stringify(state.amount))
-            localStorage.setItem('total', JSON.stringify(state.total))
+            const item = state.cartItems.find(item => item._id === action.payload._id)
+
+            if (item) {
+                state.cartItems = state.cartItems.map(item => {
+                    return item._id === action.payload._id ? { ...item, quantity: item.quantity + 1 } : item // increase item
+                })
+            } else {
+                state.cartItems.push({ ...action.payload, quantity: 1 }) // add item to cart 
+            }
+            localStorage.setItem('cart', JSON.stringify(state.cartItems))
         },
         removeItem: (state, action) => {
+            const item = state.cartItems.find(item => item._id === action.payload._id)
+
+            if (item) {
+                if (item.quantity <= 1) {
+                    state.cartItems = state.cartItems.filter(item => item._id !== action.payload._id)
+                } else {
+                    state.cartItems = state.cartItems.map(item => {
+                        return item._id === action.payload._id ? { ...item, quantity: item.quantity - 1 } : item
+                    })
+                }
+                localStorage.setItem('cart', JSON.stringify(state.cartItems))
+            }
+        },
+        deleteItem: (state, action) => {
             const itemId = action.payload;
             state.cartItems = state.cartItems.filter(item => itemId !== item._id);
-            state.total = state.cartItems.reduce((preValue, item) => preValue + item.itemTotal, 0)
-            state.amount = state.cartItems.reduce((preValue, item) => preValue + item.itemCount, 0)
-            localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-            localStorage.setItem('amount', JSON.stringify(state.amount))
-            localStorage.setItem('total', JSON.stringify(state.total))
-        },
-        loadCartItems: state => {
-            state.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            state.amount = JSON.parse(localStorage.getItem('amount')) || 0;
-            state.total = JSON.parse(localStorage.getItem('total')) || 0;
+            localStorage.setItem('cart', JSON.stringify(state.cartItems))
         },
         openCart: (state) => {
             state.showCart = true;
@@ -63,5 +54,5 @@ const cartSlice = createSlice({
     }
 });
 
-export const { addItem, increaseItem, decreaseItem, removeItem, openCart, closeCart, loadCartItems } = cartSlice.actions;
+export const { addItem, removeItem, deleteItem, openCart, closeCart, setLocalItems } = cartSlice.actions;
 export default cartSlice.reducer;
