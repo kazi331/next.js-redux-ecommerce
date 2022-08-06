@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: false,
   images: {
     domains: ['fakestoreapi.com', 'i.postimg.cc', 'i.ibb.co'],
   },
