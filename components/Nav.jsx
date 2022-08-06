@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartIcon, kachaBazar, notificationIcon, searchIcon, userIcon } from '../components/icons';
-import styles from '../styles/Nav.module.css';
 import { openCart } from '../redux/features/cartSlice';
+import styles from '../styles/Nav.module.css';
 const Nav = () => {
     const { amount } = useSelector(state => state.cartItems);
     const dispatch = useDispatch();

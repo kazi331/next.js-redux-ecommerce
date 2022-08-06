@@ -99,54 +99,6 @@ export const products = [
         "price": 15,
         "discount": 0,
         "tag": [
-            "[\"calabaza-squash\",\"fresh vegetable\"]"
-        ],
-        "flashSale": false,
-        "status": "Show",
-        "_id": "61c355337f19aa31349af4f8",
-        "children": "Fresh Vegetable",
-        "createdAt": "2021-12-22T16:41:23.216Z",
-        "description": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi.",
-        "image": "https://i.postimg.cc/bvrsZtMt/Calabaza-Squash-Package-each.jpg",
-        "originalPrice": 15,
-        "parent": "Fruits & Vegetable",
-        "quantity": 41,
-        "slug": "calabaza-squash",
-        "title": "Calabaza Squash",
-        "type": "Grocery",
-        "unit": "each",
-        "updatedAt": "2022-07-31T16:10:21.602Z",
-        "sku": "",
-        "__v": 0
-    },
-    {
-        "price": 14,
-        "discount": 0,
-        "tag": [
-            "[\"lettuce\",\"fresh vegetable\"]"
-        ],
-        "flashSale": false,
-        "status": "Show",
-        "_id": "61c355337f19aa31349af4f7",
-        "children": "Fresh Vegetable",
-        "createdAt": "2021-12-22T16:41:23.216Z",
-        "description": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi.",
-        "image": "https://i.postimg.cc/GhRtkNVr/Lettuce-1lb.jpg",
-        "originalPrice": 14,
-        "parent": "Fruits & Vegetable",
-        "quantity": 40,
-        "slug": "lettuce",
-        "title": "Lettuce",
-        "type": "Grocery",
-        "unit": "1lb",
-        "updatedAt": "2022-07-31T17:01:18.537Z",
-        "sku": "",
-        "__v": 0
-    },
-    {
-        "price": 15,
-        "discount": 0,
-        "tag": [
             "[\"radicchio\",\"fresh vegetable\"]"
         ],
         "flashSale": false,

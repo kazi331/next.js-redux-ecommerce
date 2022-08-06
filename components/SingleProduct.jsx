@@ -14,7 +14,8 @@ const SingleProduct = ({ product }) => {
         <div className="group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center">
             <div className="p-3 bg-gray-100 dark:bg-[#2F334D] rounded-lg hover:shadow-lg">
                 <a className="block  h-48 rounded overflow-hidden product-image">
-                    <Image className="" width={500} height={500} src={image} alt={title} />
+                    {/* <Image className="" width={200} height={200} src={image} quality="40" placeholder="blur" blurDataURL={image}  alt={title} /> */}
+                    <Image className="" width={200} height={200} src={image} quality="40"   alt={title} />
                 </a>
                 <div className="mt-4">
                     <h3 className=" text-xs tracking-widest title-font mb-1">{type}</h3>

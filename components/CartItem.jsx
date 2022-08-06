@@ -7,6 +7,7 @@ import { decreaseItem, increaseItem, removeItem } from '../redux/features/cartSl
 const CartItem = ({ item }) => {
     const { category, title, _id, image, price, itemCount, itemTotal } = item;
     const dispatch = useDispatch();
+
     return (
         <div className="p-2  w-full ">
             <div className="h-full flex shadow items-center justify-between bg-gray-300 dark:bg-gray-800 dark:bg-opacity-20 bg-opacity-40 p-4 rounded-lg dark:text-gray-200">

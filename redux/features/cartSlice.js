@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const initialState = {
     cartItems: [],
     amount: 0,
@@ -12,32 +11,34 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem: (state, action) => {
-            state.cartItems = [...state.cartItems, action.payload]
-            state.amount += 1;
+            state.cartItems = [...state.cartItems, action.payload];
+            state.total = state.cartItems.reduce((preValue, item) => preValue + item.itemTotal, 0)
+            state.amount = state.cartItems.reduce((preValue, item) => preValue + item.itemCount, 0)
+
         },
         increaseItem: (state, action) => {
             const itemId = action.payload;
             const productItem = state.cartItems.find(item => itemId === item._id);
             productItem.itemCount += 1;
+            productItem.itemTotal = productItem.price * productItem.itemCount;
+            state.total = state.cartItems.reduce((preValue, item) => preValue + item.itemTotal, 0)
+            state.amount = state.cartItems.reduce((preValue, item) => preValue + item.itemCount, 0)
+
         },
         decreaseItem: (state, action) => {
             const itemId = action.payload;
             const productItem = state.cartItems.find(item => itemId === item._id)
             productItem.itemCount -= 1;
+            productItem.itemTotal = productItem.price * productItem.itemCount;
+            state.total = state.cartItems.reduce((preValue, item) => preValue + item.itemTotal, 0)
+            state.amount = state.cartItems.reduce((preValue, item) => preValue + item.itemCount, 0)
         },
         removeItem: (state, action) => {
             const itemId = action.payload;
             state.cartItems = state.cartItems.filter(item => itemId !== item._id);
-        },
-        calculateTotal: state => {
-            const itemCount = 0;
-            const total = 0;
-            state.cartItems.forEach(item => {
-                itemCount += item.itemCount;
-                total += itemCount * item.price
-            });
-            state.total = total;
-            state.amount = itemCount;
+            state.total = state.cartItems.reduce((preValue, item) => preValue + item.itemTotal, 0)
+            state.amount = state.cartItems.reduce((preValue, item) => preValue + item.itemCount, 0)
+
         },
         openCart: (state) => {
             state.showCart = true;
