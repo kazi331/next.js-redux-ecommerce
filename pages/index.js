@@ -6,43 +6,55 @@ import { filtered, getProducts } from "../redux/features/productSlice";
 import Head from "next/head";
 
 const Home = () => {
-  const showCart = useSelector((state) => state.cartItems.showCart);
-  const { searchKey } = useSelector((state) => state.search);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+    const showCart = useSelector(state => state.cartItems.showCart);
+    const { searchKey } = useSelector(state => state.search);
+    const { products, loading } = useSelector(state => state.products);
+    const [page, setPage] = useState(0)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProducts());
+        // dispatch(filtered())
+    }, [dispatch]);
 
-  const { products, loading } = useSelector((state) => state.products);
+    const itemPerPage = 40;
+    const numOfPage = Math.ceil(products.length / itemPerPage);
+    const arr = [...Array(numOfPage).keys()];
 
-  return (
-    <>
-      <Head>
-        <title>Next Redux Ecommerce Website</title>
-      </Head>
-      <h2 className="text-center font-bold text-3xl dark:text-gray-200 mt-10 ">
-        All Products
-      </h2>
-      <section className="dark:text-gray-200 body-font">
-        <div className="container px-5 py-10 mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
-            {products?.length < 1 ? (
-              <ProductLoading />
-            ) : (
-              products
-                .filter((p) =>
-                  p.title.toLowerCase().includes(searchKey.toLowerCase())
-                )
-                .map((product) => (
-                  <SingleProduct key={product._id} product={product} />
-                ))
-            )}
-          </div>
-        </div>
-      </section>
-      {showCart && <CartItems />}
-    </>
-  );
+    return (
+        <>
+            <Head>
+                <title>Next Redux Ecommerce Website</title>
+            </Head>
+            <h2 className='text-center font-bold text-3xl dark:text-gray-200 mt-10 '>All Products</h2>
+            <section className="dark:text-gray-200 body-font">
+                <div className="container px-5 py-10 mx-auto">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
+                        {
+                            products?.length < 1 ? <ProductLoading /> : products.filter(p => p.title.toLowerCase().includes(searchKey.toLowerCase()))
+                                .slice(0, 4).map(product => <SingleProduct key={product._id} product={product} />)
+                        }
+                    </div>
+                    <div className="mt-10 mb-6 text-center">
+                        {
+                            arr.map(index => <button key={index} onClick={() => setPage(index + 1)} className={`bg-gray-500 px-2 mx-1 hover:bg-[#10B981] text-white transition-all ${page == index + 1 && 'bg-[#10B982] px-4'}`}>{index + 1}</button>)
+                        }
+                        <select name="count" id="count" className='py-1 rounded outline-none px-1'>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                            <option value="all">all</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+            {showCart && <CartItems />}
+        </>
+
+    );
 };
 const ProductLoading = () => {
   const arr = [...Array(20).keys()].map((key) => key + 1);
