@@ -2,24 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItems from '../components/CartItems';
 import SingleProduct from "../components/SingleProduct";
-import { getProducts } from '../redux/features/productSlice';
+import { filtered, getProducts } from '../redux/features/productSlice';
+import Head from 'next/head'
 
 const Home = () => {
     const showCart = useSelector(state => state.cartItems.showCart);
+    const { searchKey } = useSelector(state => state.search);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getProducts())
+        dispatch(getProducts());
+        // dispatch(filtered())
     }, [dispatch]);
+
     const { products, loading } = useSelector(state => state.products);
+
 
     return (
         <>
-            <h2 className='text-center font-bold text-3xl dark:text-gray-200 '>All Products</h2>
+            <Head>
+                <title>Next Redux Ecommerce Website</title>
+            </Head>
+            <h2 className='text-center font-bold text-3xl dark:text-gray-200 mt-10 '>All Products</h2>
             <section className="dark:text-gray-200 body-font">
-                <div className="container px-5 py-24 mx-auto">
+                <div className="container px-5 py-10 mx-auto">
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
                         {
-                            products?.length < 1 ? <ProductLoading /> : products.map(product => <SingleProduct key={product._id} product={product} />)
+                            products?.length < 1 ? <ProductLoading /> : products.filter(p => p.title.toLowerCase().includes(searchKey.toLowerCase())).map(product => <SingleProduct key={product._id} product={product} />)
                         }
                     </div>
                 </div>
@@ -30,7 +38,7 @@ const Home = () => {
     );
 };
 const ProductLoading = () => {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    const arr = [...Array(20).keys()].map(key => key + 1)
     return (<>
         {arr.map((a, i) => <div key={i} className="animate-pulse group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center">
             <div className="w-[250px] h-[300px] p-4 bg-gray-400 dark:bg-[#3b3f5e] rounded flex flex-col items-center justify-center">

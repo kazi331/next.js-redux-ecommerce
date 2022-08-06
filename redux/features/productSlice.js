@@ -11,7 +11,15 @@ const productSlice = createSlice({
         products: [],
         loading: true
     },
-    reducers: {},
+    reducers: {
+        filtered: (state, action) => {
+            state.products = state.products.filter(product => product.title.toLowerCase().includes(action.payload.toLowerCase()))
+        },
+        filterItem: (state, action) => {
+            console.log(action.payload)
+        }
+    },
+
     extraReducers: {
         [getProducts.pending]: (state) => {
             state.loading = true;
@@ -22,11 +30,11 @@ const productSlice = createSlice({
         },
         [getProducts.rejected]: (state) => {
             state.loading = false;
-
-
         }
-    }
+    },
+
 });
 
 // console.log(productSlice);
+export const { filtered, filterItem } = productSlice.actions;
 export default productSlice.reducer;

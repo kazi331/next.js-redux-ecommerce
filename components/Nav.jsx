@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartIcon, kachaBazar, notificationIcon, searchIcon, userIcon } from '../components/icons';
 import { loadCartItems, openCart } from '../redux/features/cartSlice';
+import { filtered } from '../redux/features/productSlice';
+import { search } from '../redux/features/searchFilter';
 import styles from '../styles/Nav.module.css';
 const Nav = () => {
     const { amount } = useSelector(state => state.cartItems);
@@ -18,16 +20,20 @@ const Nav = () => {
     ]
     useEffect(() => {
         dispatch(loadCartItems())
-    }, [dispatch])
+    }, [dispatch]);
+
     return (
         <div className='sticky top-0 left-0 z-40'>
             <div className="bg-[#10B981] py-4">
                 <header className='flex items-center max-w-[1280px] mx-auto  gap-10 justify-between dark:bg-opacity-60 bg-opacity-80 backdrop-blur-xl px-4'>
                     <Link className="nav-link" href="/" ><a><span>{kachaBazar}</span></a></Link>
-                    <form className='grow mx-4 max-w-xl '>
+                    <form onSubmit={(e) => {
+                        e.preventDefault();
+                        dispatch(search(e.target.search.value))
+                    }} className='grow mx-4 max-w-xl'>
                         <label htmlFor="search" className='flex'>
-                            <input type="text" className='w-full px-4 py-2 bg-gray-100 outline-none rounded-lg text-gray-800' placeholder='Search Here' />
-                            <button className='text-red -ml-10 bg-gray-100 text-gray-500 px-2'> {searchIcon} </button>
+                            <input onChange={(e) => dispatch(search(e.target.value))} name='search' type="text" className='w-full px-4 py-2 bg-gray-100 outline-none rounded-lg text-gray-800' placeholder='Search Here' />
+                            <button type='submit' className='text-red -ml-10 bg-gray-100 text-gray-500 px-2'> {searchIcon} </button>
                         </label>
                     </form>
 

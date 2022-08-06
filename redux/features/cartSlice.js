@@ -6,7 +6,6 @@ const initialState = {
     total: 0,
     showCart: false,
 }
-
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -18,8 +17,6 @@ const cartSlice = createSlice({
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
             localStorage.setItem('amount', JSON.stringify(state.amount))
             localStorage.setItem('total', JSON.stringify(state.total))
-            
-
         },
         increaseItem: (state, action) => {
             const itemId = action.payload;
@@ -31,8 +28,6 @@ const cartSlice = createSlice({
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
             localStorage.setItem('amount', JSON.stringify(state.amount))
             localStorage.setItem('total', JSON.stringify(state.total))
-            
-
         },
         decreaseItem: (state, action) => {
             const itemId = action.payload;
@@ -44,7 +39,6 @@ const cartSlice = createSlice({
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
             localStorage.setItem('amount', JSON.stringify(state.amount))
             localStorage.setItem('total', JSON.stringify(state.total))
-            
         },
         removeItem: (state, action) => {
             const itemId = action.payload;
@@ -54,16 +48,12 @@ const cartSlice = createSlice({
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
             localStorage.setItem('amount', JSON.stringify(state.amount))
             localStorage.setItem('total', JSON.stringify(state.total))
-            
-
         },
         loadCartItems: state => {
             state.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             state.amount = JSON.parse(localStorage.getItem('amount')) || 0;
             state.total = JSON.parse(localStorage.getItem('total')) || 0;
-
-        }
-        ,
+        },
         openCart: (state) => {
             state.showCart = true;
         },
@@ -73,6 +63,5 @@ const cartSlice = createSlice({
     }
 });
 
-// console.log(cartSlice)
 export const { addItem, increaseItem, decreaseItem, removeItem, openCart, closeCart, loadCartItems } = cartSlice.actions;
 export default cartSlice.reducer;
