@@ -5,6 +5,7 @@ import { cartIcon, kachaBazar, notificationIcon, searchIcon, userIcon } from '..
 import { openCart } from '../redux/features/cartSlice';
 import { search } from '../redux/features/searchFilter';
 import styles from '../styles/Nav.module.css';
+import {signIn, signOut} from 'next-auth/react'
 const Nav = () => {
     const dispatch = useDispatch();
     const router = useRouter();
@@ -17,7 +18,9 @@ const Nav = () => {
         { id: 2, slug: '/products', title: 'Products' },
         { id: 3, slug: '/blogs', title: 'Blogs' },
         { id: 4, slug: '/about', title: 'About' },
-        { id: 5, slug: '/contact', title: 'Contact' }
+        { id: 5, slug: '/contact', title: 'Contact' },
+
+
     ]
 
     return (
@@ -38,7 +41,7 @@ const Nav = () => {
                     <div className='flex gap-2 text-white'>
                         <button className=''> {notificationIcon} </button>
                         <button onClick={() => dispatch(openCart())}>
-                            <span className="relative">{cartIcon}</span> 
+                            <span className="relative">{cartIcon}</span>
                             <sup className={styles.cartAmount}>
                                 {totalItems}
                             </sup>
@@ -52,6 +55,14 @@ const Nav = () => {
                     {
                         navs.map(nav => <Link key={nav.id} href={nav.slug}><a className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === nav.slug && "bg-[#10B981] bg-opacity-20 dark:bg-[#10B981]"}`}>{nav.title}</a></Link>)
                     }
+                    <Link href="/api/auth/signin"><a onClick={e => {
+                        e.preventDefault();
+                        signIn('discord');
+                    }} className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded">Sign In</a></Link>
+                    <Link href="/api/auth/signout"><a onClick={e => {
+                        e.preventDefault();
+                        signOut();
+                    }} className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded">Sign Out</a></Link>
                 </nav>
             </div>
         </div>
