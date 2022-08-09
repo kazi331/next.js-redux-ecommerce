@@ -8,10 +8,10 @@ import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getProducts());
-        dispatch(setLocalItems())
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(setLocalItems())
+  }, [dispatch]);
 
   return (
     <Layout>

@@ -26,8 +26,9 @@ const Nav = () => {
         { id: 3, slug: "/blogs", title: "Blogs" },
         { id: 4, slug: "/about", title: "About" },
         { id: 5, slug: "/contact", title: "Contact" },
+        { id: 6, slug: "/dashboard", title: "Dashboard" },
     ];
-  
+
     return (
         <>
             <div className="sticky top-0 left-0 z-40">
@@ -69,7 +70,7 @@ const Nav = () => {
                                 <sup className={styles.cartAmount}>{totalItems}</sup>
                             </button>
                             <button>
-                                <Link href="/login">{userIcon}</Link>
+                                <Link href="/dashboard">{userIcon}</Link>
                             </button>
                         </div>
                     </header>
@@ -87,12 +88,8 @@ const Nav = () => {
                                 </a>
                             </Link>
                         ))}
-                        {status === 'unauthenticated' && <Link href="/api/auth/signin">
+                        {status === 'unauthenticated' && <Link href="/login">
                             <a
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    signIn("discord");
-                                }}
                                 className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded"
                             >
                                 Sign In

@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import { emailIcon, githubIcon, googleIcon, lockIcon } from "../components/icons";
-import Link from 'next/link'
-import SocialLogin from "../components/SocialLogin";
-import Head from "next/head";
 import { useSession } from "next-auth/react";
+import Head from "next/head";
 import Image from "next/image";
+import Link from 'next/link';
+import React, { useEffect } from "react";
 import { toast } from "react-hot-toast";
+import { emailIcon, lockIcon } from "../components/icons";
+import SocialLogin from "../components/SocialLogin";
+import Dashboard from "./dashboard";
 const Login = () => {
   const { data: session, status } = useSession();
   useEffect(() => {
@@ -79,28 +80,7 @@ const Login = () => {
 
 
   if (status === 'authenticated') {
-    return (<div className="flex w-full items-center justify-center">
-
-      <div className="rounded-3xl w-full py-4 overflow-hidden shadow-xl max-w-xs my-3 bg-gray-800">
-        <div className="flex justify-center">
-          <Image src={session.user.image} height="200" width="200" alt={session.user.name} className="rounded-full border-solid border-white border-2 -mt-3" />
-        </div>
-        <div className="text-center px-3 pb-6 pt-2">
-          <h3 className="text-white text-sm bold font-sans">{session.user.name}</h3>
-          <p className="mt-2 font-sans font-light text-white">{session.user.email}</p>
-        </div>
-        <div className="flex justify-center pb-3 text-white">
-          <div className="text-center mr-3 border-r pr-3">
-            <h2>34</h2>
-            <span>Photos</span>
-          </div>
-          <div className="text-center">
-            <h2>42</h2>
-            <span>Friends</span>
-          </div>
-        </div>
-      </div>
-    </div>)
+    return <Dashboard />
   }
 };
 

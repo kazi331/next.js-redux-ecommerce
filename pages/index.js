@@ -4,8 +4,11 @@ import { useSelector } from "react-redux";
 import CartItems from "../components/CartItems";
 import FilterBar from "../components/FilterBar";
 import SingleProduct from "../components/SingleProduct";
+import { useSession } from 'next-auth/react'
 
 const Home = () => {
+  const { data, status } = useSession();
+  console.log({ data }, { status })
   const showCart = useSelector(state => state.cartItems.showCart);
   const { searchKey, category } = useSelector(state => state.search);
   const { products, loading } = useSelector(state => state.products);
