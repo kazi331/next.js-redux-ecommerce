@@ -76,7 +76,7 @@ const Nav = () => {
                     </header>
                 </div>
                 <div className="dark:bg-[#292E46] bg-opacity-80 dark:bg-opacity-80 backdrop-blur-2xl shadow-lg dark:shadow-lg dark:shadow-gray-800">
-                    <nav className="flex gap-2 container mx-auto py-2 mb-4 px-4">
+                    <nav className="flex gap-2 container mx-auto py-2 px-4">
                         {navs.map((nav) => (
                             <Link key={nav.id} href={nav.slug}>
                                 <a
