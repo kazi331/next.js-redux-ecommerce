@@ -3,6 +3,7 @@ const initialState = {
     searchKey : "",
     category : "",
     sort: "",
+    range: [],
 }
 
 const searchFilter = createSlice({
@@ -17,8 +18,11 @@ const searchFilter = createSlice({
         },
         sort: (state, action) => {
             state.sort = action.payload;
+        }, 
+        range: (state, action) => {
+            state.range = action.payload;
         }
     }
 });
-export const {search, filter, sort} = searchFilter.actions;
+export const {search, filter, sort, range} = searchFilter.actions;
 export default searchFilter.reducer;

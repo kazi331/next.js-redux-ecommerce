@@ -1,29 +1,5 @@
 export const products = [
     {
-        "price": 12,
-        "discount": 0,
-        "tag": [
-            "[\"rainbow-chard\",\"fresh vegetable\"]"
-        ],
-        "flashSale": false,
-        "status": "Show",
-        "_id": "61c355337f19aa31349af4fd",
-        "children": "Fresh Vegetable",
-        "createdAt": "2021-12-22T16:41:23.216Z",
-        "description": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi.",
-        "image": "https://i.postimg.cc/Z5yQ47YB/Rainbow-Chard-Package-per-lb.jpg",
-        "originalPrice": 12,
-        "parent": "Fruits & Vegetable",
-        "quantity": 91,
-        "slug": "rainbow-chard",
-        "title": "Rainbow Chard",
-        "type": "Vegitable",
-        "unit": "1lb",
-        "updatedAt": "2022-07-31T17:01:18.537Z",
-        "sku": "",
-        "__v": 0
-    },
-    {
         "price": 13,
         "discount": 0,
         "tag": [
@@ -44,6 +20,30 @@ export const products = [
         "type": "Vegitable",
         "unit": "5ct",
         "updatedAt": "2022-01-19T20:18:00.564Z",
+        "sku": "",
+        "__v": 0
+    },
+    {
+        "price": 12,
+        "discount": 0,
+        "tag": [
+            "[\"rainbow-chard\",\"fresh vegetable\"]"
+        ],
+        "flashSale": false,
+        "status": "Show",
+        "_id": "61c355337f19aa31349af4fd",
+        "children": "Fresh Vegetable",
+        "createdAt": "2021-12-22T16:41:23.216Z",
+        "description": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi.",
+        "image": "https://i.postimg.cc/Z5yQ47YB/Rainbow-Chard-Package-per-lb.jpg",
+        "originalPrice": 12,
+        "parent": "Fruits & Vegetable",
+        "quantity": 91,
+        "slug": "rainbow-chard",
+        "title": "Rainbow Chard",
+        "type": "Vegitable",
+        "unit": "1lb",
+        "updatedAt": "2022-07-31T17:01:18.537Z",
         "sku": "",
         "__v": 0
     },
