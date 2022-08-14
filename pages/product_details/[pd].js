@@ -1,16 +1,22 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { chevronLeft, loadingIcon } from '../../components/icons';
+import { getProducts } from '../../redux/features/productSlice';
 
 const ProductDetails = () => {
+    const dispatch = useDispatch();
     const [fav, setFav] = useState(false)
     const route = useRouter();
     const { pd } = route.query;
+    useEffect(() => {
+        dispatch(getProducts())
+    }, [dispatch])
     const { products, loading } = useSelector(state => state.products);
-    const product = products.find(product => product._id === pd);
-    const { title, unit, price, type, quantity, image, _id, description, flashSale } = product;
+  
+
     if (loading) {
         return (
             <div className="flex items-center justify-center">
@@ -21,9 +27,11 @@ const ProductDetails = () => {
             </div>
         )
     }
+    const product = products.find(product => product._id === pd);
+    const { title, unit, price, type, quantity, image, _id, description, flashSale } = product;
     return (
         <section className="text-gray-400 bg-gray-900 body-font overflow-hidden">
-            <div className="container px-5 py-24 mx-auto">
+             <div className="container px-5 py-24 mx-auto">
                 <div className="w-full lg:w-4/5 mx-auto flex flex-wrap justify-center">
                     <div className="w-full md:w-1/2  lg:pr-10 lg:py-6 mb-6 lg:mb-0">
                         <button onClick={() => history.back()} className='flex text-sm py-1 px-2 border-[1px]  border-gray-600 mb-2 hover:text-gray-200 hover:border-gray-400 '>{chevronLeft} Back</button>
@@ -59,7 +67,7 @@ const ProductDetails = () => {
                     </div>
                     <Image height="500" width="500" alt="ecommerce" className="md:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={image} />
                 </div>
-            </div> 
+            </div>
         </section>
     )
 }
