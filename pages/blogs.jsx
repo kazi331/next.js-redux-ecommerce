@@ -1,10 +1,8 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { getSession } from 'next-auth/react'
-import { redirect } from 'next/dist/server/api-utils';
-
-const Blogs = ({session}) => {
+import { getSession } from 'next-auth/react';
+const Blogs = ({ session }) => {
     console.log(session)
     const [posts, setPosts] = useState([])
     useEffect(() => {
@@ -35,16 +33,17 @@ const Blogs = ({session}) => {
         </div>
     );
 };
-export async function getServerSideProps(context) {
+
+export const getServerSideProps = async (context) => {
     const session = await getSession(context);
     if (!session) {
         return {
-            redirect: {
-                destination: '/login',
-                permanent: false,
+            props: {
+                session: { message: 'UnAuthorized', rule: 'visitor' }
             }
         }
     }
+
     return {
         props: { session }
     }

@@ -6,6 +6,7 @@ import FilterBar from "../components/FilterBar";
 import SingleProduct from "../components/SingleProduct";
 import { useSession } from 'next-auth/react'
 import ProductLoading from "../components/ProductLoading";
+import PageDivider from "../components/PageDivider";
 
 const Home = () => {
   const { data, status } = useSession();
@@ -24,7 +25,7 @@ const Home = () => {
   } else if (sort === 'low2high') {
     sortedProducts = searchedProducts.sort((a, b) => a.price - b.price)
   } else if (sort === 'default') {
-    sortedProducts = searchedProducts.sort(a => a.updatedAt)
+    sortedProducts = searchedProducts.sort(a => a)
   }
   const paginatedProducts = sortedProducts.slice(page * perPage, (page + 1) * perPage);
 
@@ -49,17 +50,7 @@ const Home = () => {
             {searchedProducts.length > perPage && (
               arr.map(index => <button key={index} onClick={() => setPage(index)} className={`bg-gray-500 px-2 mx-1 hover:bg-[#10B981] text-white transition-all ${page == index && 'bg-[#10B982] px-4'}`}>{index + 1}</button>)
             )}
-
-            <select name="count" id="count" className='py-1 mt-4 rounded outline-none px-1 bg-gray-500' onChange={(e) => setPerPage(Number(e.target.value))}>
-              <option value="50" >50</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="75">75</option>
-              <option value="100">100</option>
-              <option value={products.length}>all</option>
-            </select>
+          <PageDivider products={products} setPerPage={setPerPage} />
           </div>
         </div>
       </section>

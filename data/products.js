@@ -3984,7 +3984,7 @@ export const products = [
         "__v": 0
     },
     {
-        "price": 6,
+        "price": 116,
         "discount": 0,
         "tag": [
             "[\"air freshener\"]"
@@ -5184,7 +5184,7 @@ export const products = [
         "__v": 0
     },
     {
-        "price": 9,
+        "price": 219,
         "discount": 0,
         "tag": [
             "[\"lays-chips\",\"chips & nuts\"]"
