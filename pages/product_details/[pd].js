@@ -9,7 +9,8 @@ const ProductDetails = () => {
     const route = useRouter();
     const { pd } = route.query;
     const { products, loading } = useSelector(state => state.products);
-    const [product] = products.filter(product => product._id === pd);
+    const product = products.find(product => product._id === pd);
+    const { title, unit, price, type, quantity, image, _id, description, flashSale } = product;
     if (loading) {
         return (
             <div className="flex items-center justify-center">
@@ -20,7 +21,6 @@ const ProductDetails = () => {
             </div>
         )
     }
-    const { title, unit, price, type, quantity, image, _id, description, flashSale } = product;
     return (
         <section className="text-gray-400 bg-gray-900 body-font overflow-hidden">
             <div className="container px-5 py-24 mx-auto">
@@ -59,7 +59,7 @@ const ProductDetails = () => {
                     </div>
                     <Image height="500" width="500" alt="ecommerce" className="md:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={image} />
                 </div>
-            </div>
+            </div> 
         </section>
     )
 }

@@ -30,7 +30,7 @@ const Login = () => {
   const emailLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
-    signIn('email', { email });
+    signIn('email', {email});
   }
 
   return (
