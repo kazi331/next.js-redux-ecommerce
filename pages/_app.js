@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
-    dispatch(setLocalItems())
+    dispatch(setLocalItems());
   }, [dispatch]);
 
   return (

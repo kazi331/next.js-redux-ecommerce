@@ -7,7 +7,7 @@ const LocalProtect = () => {
     if (status === 'loading') return <Loading />
     if (status === 'unauthenticated') return signIn();
     return (<>
-        <h2 className='text-center py-10'>This is locally protected</h2>
+        <h2 className='text-center py-10 text-green-500 text-3xl'>This is locally protected</h2>
         <div className="flex w-full items-center justify-center">
             <UserInfo {...session} />
         </div>

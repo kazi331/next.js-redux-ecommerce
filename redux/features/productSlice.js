@@ -8,14 +8,12 @@ const productSlice = createSlice({
     name: 'products',
     initialState: {
         products: [],
-        loading: true
+        loading: false
     },
     reducers: {
         filtered: (state, action) => {
             state.products = state.products.filter(product => product.title.toLowerCase().includes(action.payload.toLowerCase()))
-        },
-        filterItem: (state, action) => {
-            console.log(action.payload)
+            
         }
     },
 
@@ -24,7 +22,7 @@ const productSlice = createSlice({
             state.loading = true;
         },
         [getProducts.fulfilled]: (state, action) => {
-            state.products = action.payload;
+            state.products = action.payload;        
             state.loading = false;
         },
         [getProducts.rejected]: (state) => {
@@ -35,5 +33,5 @@ const productSlice = createSlice({
 });
 
 // console.log(productSlice);
-export const { filtered, filterItem } = productSlice.actions;
+export const { filtered } = productSlice.actions;
 export default productSlice.reducer;

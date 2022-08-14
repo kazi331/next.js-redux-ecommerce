@@ -29,7 +29,6 @@ const Home = () => {
   }
   const paginatedProducts = sortedProducts.slice(page * perPage, (page + 1) * perPage);
 
-
   const arr = [...Array(numOfPage).keys()];
 
   return (
