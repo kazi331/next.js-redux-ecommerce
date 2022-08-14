@@ -1,4 +1,4 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -14,6 +14,7 @@ const Nav = () => {
     const { cartItems } = useSelector((state) => state.cartItems);
     const totalItems = cartItems.reduce((prev, item) => prev + item.quantity, 0);
     const { data: session, status } = useSession();
+    
     const navs = [
         { id: 1, slug: "/", title: "Home" },
         { id: 2, slug: "/products", title: "Products" },
@@ -66,8 +67,8 @@ const Nav = () => {
                             <span className="relative">{cartIcon}</span>
                             <sup className={styles.cartAmount}>{totalItems}</sup>
                         </button>
-                        <button>
-                            <Link href="/dashboard">{userIcon}</Link>
+                        <button onClick={() => router.push('/dashboard')} className="flex">
+                            {session?.user?.image ? <Image src={session?.user?.image} width="30px" height="30px" alt="user" className="rounded-full" /> : userIcon}
                         </button>
                     </div>
                 </header>
@@ -90,7 +91,7 @@ const Nav = () => {
                     {status === 'unauthenticated' && <Link href="/login">
                         <a className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded" > Sign In</a>
                     </Link>}
-                    {status === "authenticated" && <span onClick={() => signOut()}
+                    {status === "authenticated" && <span onClick={() => signOut('See Again')}
                         className="cursor-pointer px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded">
                         Sign Out
                     </span>}

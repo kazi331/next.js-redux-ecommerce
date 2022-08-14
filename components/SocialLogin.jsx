@@ -3,6 +3,7 @@ import { discordIcon, githubIcon, googleIcon } from './icons';
 import { signIn, signOut } from 'next-auth/react'
 
 const SocialLogin = ({ returnTo }) => {
+    
     return (
         <div className="bg-gray-50 rounded-t-lg border-t-4 p-8">
             <p className="text-center  font-light">

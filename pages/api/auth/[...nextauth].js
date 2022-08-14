@@ -2,8 +2,12 @@ import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github";
 import DiscordProvider from 'next-auth/providers/discord'
 import GoogleProvider from 'next-auth/providers/google'
+import EmailProvider from "next-auth/providers/email";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
+import clientPromise from "../../../lib/mongodb";
 
 export default NextAuth({
+    adapter: MongoDBAdapter(clientPromise),
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID,
@@ -23,15 +27,17 @@ export default NextAuth({
                     response_type: "code"
                 }
             }
-        })
-    ],
-    callbacks: {
-        async redirect({ url, baseUrl }) {
-          // Allows relative callback URLs
-          if (url.startsWith("/")) return `${baseUrl}${url}`
-          // Allows callback URLs on the same origin
-          else if (new URL(url).origin === baseUrl) return url
-          return baseUrl
-        }
-      }
+        }),
+        EmailProvider({
+            server: {
+                host: process.env.EMAIL_SERVER_HOST,
+                port: process.env.EMAIL_SERVER_PORT,
+                auth: {
+                    user: process.env.EMAIL_SERVER_USER,
+                    pass: process.env.EMAIL_SERVER_PASSWORD
+                }
+            },
+            from: process.env.EMAIL_FROM
+        }),
+    ]
 })

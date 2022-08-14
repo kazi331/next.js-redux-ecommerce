@@ -1,4 +1,4 @@
-import { getSession, useSession } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from 'next/link';
@@ -9,9 +9,8 @@ import { emailIcon, lockIcon } from "../components/icons";
 import SocialLogin from "../components/SocialLogin";
 const Login = () => {
   const { data: session, status } = useSession();
-  const { returnTo } = useRouter().query;
-  console.log(returnTo)
-
+  const router = useRouter();
+  const { returnTo } = router.query;
   useEffect(() => {
     if (session && status !== 'loading') {
       toast(
@@ -28,6 +27,11 @@ const Login = () => {
       )
     }
   }, [session, status]);
+  const emailLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    signIn('email', { email });
+  }
 
   return (
     <>
@@ -42,13 +46,11 @@ const Login = () => {
             <p className="text-center  font-light">
               Or sign in with credentials
             </p>
-            <form className="mt-6">
+            <form className="mt-6" onSubmit={emailLogin}>
               <div className="relative">
                 <input
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 bg-white text-gray-500 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
-                  id="email"
-                  type="email"
-                  placeholder="Email"
+                  id="email" name="email" type="email" placeholder="Email"
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   {emailIcon}
@@ -57,9 +59,7 @@ const Login = () => {
               <div className="relative mt-3">
                 <input
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 bg-white text-gray-500 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
-                  id="password"
-                  type="password"
-                  placeholder="Password"
+                  id="password" type="password" placeholder="Password"
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   {lockIcon}
