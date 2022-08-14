@@ -21,7 +21,7 @@ export const getServerSideProps = async (context) => {
     if (!session) {
         return {
             redirect: {
-                destination: '/login',
+                destination: `/login?returnTo=${context.resolvedUrl}`,
                 permanent: false,
             }
         }

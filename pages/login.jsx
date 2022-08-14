@@ -2,12 +2,15 @@ import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from 'next/link';
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { emailIcon, lockIcon } from "../components/icons";
 import SocialLogin from "../components/SocialLogin";
 const Login = () => {
   const { data: session, status } = useSession();
+  const { returnTo } = useRouter().query;
+  console.log(returnTo)
 
   useEffect(() => {
     if (session && status !== 'loading') {
@@ -34,7 +37,7 @@ const Login = () => {
 
       <div className="w-full h-full flex items-center justify-center">
         <div className="w-full sm:w-8/12 lg:w-6/12 xl:w-4/12 max-w-md mx-auto text-gray-400 shadow-xl my-10">
-          <SocialLogin />
+          <SocialLogin returnTo={returnTo} />
           <div className="bg-gray-100 rounded-b-lg py-12 px-10 lg:px-16">
             <p className="text-center  font-light">
               Or sign in with credentials

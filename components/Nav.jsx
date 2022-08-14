@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { cartIcon, kachaBazar, notificationIcon, searchIcon, userIcon} from "../components/icons";
+import { cartIcon, kachaBazar, notificationIcon, searchIcon, userIcon } from "../components/icons";
 import { openCart } from "../redux/features/cartSlice";
 import { search } from "../redux/features/searchFilter";
 import styles from "../styles/Nav.module.css";
@@ -90,7 +90,7 @@ const Nav = () => {
                     {status === 'unauthenticated' && <Link href="/login">
                         <a className="px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded" > Sign In</a>
                     </Link>}
-                    {status === "authenticated" && <span onClick={(e) => { signOut() }}
+                    {status === "authenticated" && <span onClick={() => signOut()}
                         className="cursor-pointer px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded">
                         Sign Out
                     </span>}
