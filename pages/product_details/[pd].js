@@ -19,7 +19,7 @@ const ProductDetails = () => {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center my-10">
                 <div className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-[#10B981] transition ease-in-out duration-150 cursor-not-allowed" disabled="">
                     {loadingIcon}
                     Loading...
