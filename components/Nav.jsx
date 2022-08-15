@@ -76,7 +76,7 @@ const Nav = () => {
 
             {/* Navigation menu */}
             <div className="dark:bg-[#292E46] bg-opacity-80 dark:bg-opacity-80 backdrop-blur-2xl shadow-lg dark:shadow-lg dark:shadow-gray-800">
-                <nav className={`flex overflow-x-scroll whitespace-nowrap gap-1 container mx-auto py-2 px-4 ${status === 'loading' ? 'opacity-0 transition-all' : 'duration-200'}`}>
+                <nav className={`flex overflow-x-scroll sm:overflow-hidden whitespace-nowrap gap-1 container mx-auto py-2 px-4 ${status === 'loading' ? 'opacity-0 transition-all' : 'duration-200'}`}>
                     {navs.map((nav) => (
                         <Link key={nav.id} href={nav.slug}>
                             <a
