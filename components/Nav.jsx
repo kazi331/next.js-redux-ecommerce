@@ -14,7 +14,7 @@ const Nav = () => {
     const { cartItems } = useSelector((state) => state.cartItems);
     const totalItems = cartItems.reduce((prev, item) => prev + item.quantity, 0);
     const { data: session, status } = useSession();
-    
+
     const navs = [
         { id: 1, slug: "/", title: "Home" },
         { id: 2, slug: "/products", title: "Products" },
@@ -76,15 +76,13 @@ const Nav = () => {
 
             {/* Navigation menu */}
             <div className="dark:bg-[#292E46] bg-opacity-80 dark:bg-opacity-80 backdrop-blur-2xl shadow-lg dark:shadow-lg dark:shadow-gray-800">
-                <nav className="flex gap-2 container mx-auto py-2 px-4">
+                <nav className={`flex gap-1 container mx-auto py-2 px-4 ${status === 'loading' ? 'opacity-0 transition-all' : 'duration-200'}`}>
                     {navs.map((nav) => (
                         <Link key={nav.id} href={nav.slug}>
                             <a
                                 className={`px-2 py-1 hover:bg-gray-300 hover:dark:bg-gray-700 rounded ${router.pathname === nav.slug &&
-                                    "bg-[#10B981] bg-opacity-20 dark:bg-[#10B981]"
-                                    }`}
-                            >
-                                {nav.title}
+                                    "bg-[#10B981] bg-opacity-20 dark:bg-gray-700"
+                                    }`}> {nav.title}
                             </a>
                         </Link>
                     ))}
