@@ -8,6 +8,7 @@ const register = () => {
         <>
         <Head>
             <title>Register for new account</title>
+            <link rel="manifest" href="/manifest.json" />
         </Head>
             <div className="w-full h-full flex items-center justify-center">
                 <div className="w-full sm:w-8/12 lg:w-6/12 xl:w-4/12 max-w-md mx-auto text-gray-400 shadow-xl my-10">

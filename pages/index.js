@@ -35,6 +35,7 @@ const Home = () => {
     <>
       <Head>
         <title>Next Redux Ecommerce Website</title>
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <h2 className='text-center font-bold text-3xl dark:text-gray-200 mt-10 '>All Products</h2>
       <section className="dark:text-gray-200 body-font">

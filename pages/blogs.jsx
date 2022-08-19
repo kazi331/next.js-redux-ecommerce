@@ -14,6 +14,7 @@ const Blogs = ({ session }) => {
         <div>
             <Head>
                 <title>Our Blogs</title>
+                <link rel="manifest" href="/manifest.json" />
             </Head>
             <h2 className='text-center text-3xl py-4 text-green-400 dark:text-gray-100'>Our Blogs</h2>
             <div className="container mx-auto py-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">

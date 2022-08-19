@@ -37,6 +37,7 @@ const Login = () => {
     <>
       <Head>
         <title>Login to your account</title>
+        <link rel="manifest" href="/manifest.json" />
       </Head>
 
       <div className="w-full h-full flex items-center justify-center">
