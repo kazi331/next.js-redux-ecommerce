@@ -7,7 +7,7 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import clientPromise from "../../../lib/mongodb";
 
 export default NextAuth({
-    adapter: MongoDBAdapter(clientPromise),
+    // adapter: MongoDBAdapter(clientPromise),
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID,
@@ -28,16 +28,16 @@ export default NextAuth({
                 }
             }
         }),
-        EmailProvider({
-            server: {
-                host: process.env.EMAIL_SERVER_HOST,
-                port: process.env.EMAIL_SERVER_PORT,
-                auth: {
-                    user: process.env.EMAIL_SERVER_USER,
-                    pass: process.env.EMAIL_SERVER_PASSWORD
-                }
-            },
-            from: process.env.EMAIL_FROM
-        }),
+        // EmailProvider({
+        //     server: {
+        //         host: process.env.EMAIL_SERVER_HOST,
+        //         port: process.env.EMAIL_SERVER_PORT,
+        //         auth: {
+        //             user: process.env.EMAIL_SERVER_USER,
+        //             pass: process.env.EMAIL_SERVER_PASSWORD
+        //         }
+        //     },
+        //     from: process.env.EMAIL_FROM
+        // }),
     ]
 })

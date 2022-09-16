@@ -1,15 +1,19 @@
+import autoAnimate from '@formkit/auto-animate';
+import { getSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { getSession } from 'next-auth/react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getBlog } from '../redux/features/blogSlice';
 const Blogs = ({ session }) => {
     const dispatch = useDispatch();
+    const parent = useRef(null);
     useEffect(() => {
         dispatch(getBlog())
+        parent.current && autoAnimate(parent.current)
     }, [dispatch])
     const { blogs } = useSelector(state => state.blogs);
+ 
     return (
         <div>
             <Head>
@@ -17,7 +21,7 @@ const Blogs = ({ session }) => {
                 <link rel="manifest" href="/manifest.json" />
             </Head>
             <h2 className='text-center text-3xl py-4 text-green-400 dark:text-gray-100'>Our Blogs</h2>
-            <div className="container mx-auto py-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
+            <div ref={parent} className="container mx-auto py-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
                 {
                     blogs && blogs.map(
                         post => (
