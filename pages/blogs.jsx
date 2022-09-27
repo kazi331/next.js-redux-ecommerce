@@ -15,12 +15,12 @@ const Blogs = ({ session }) => {
     const { blogs } = useSelector(state => state.blogs);
  
     return (
-        <div>
+        <div className='text-gray-800 bg-gray-50 dark:text-gray-100 dark:bg-[#292E46]'>
             <Head>
                 <title>Our Blogs</title>
                 <link rel="manifest" href="/manifest.json" />
             </Head>
-            <h2 className='text-center text-3xl py-4 text-green-400 dark:text-gray-100'>Our Blogs</h2>
+            <h2 className='text-center text-3xl py-4 text-green-400 '>Our Blogs</h2>
             <div ref={parent} className="container mx-auto py-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
                 {
                     blogs && blogs.map(

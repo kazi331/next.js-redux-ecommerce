@@ -2,6 +2,8 @@ import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { cartIcon, kachaBazar, notificationIcon, searchIcon, userIcon } from "../components/icons";
@@ -14,6 +16,7 @@ const Nav = () => {
     const { cartItems } = useSelector((state) => state.cartItems);
     const totalItems = cartItems.reduce((prev, item) => prev + item.quantity, 0);
     const { data: session, status } = useSession();
+    const [mode, setMode] = useState('Light')
 
     const navs = [
         { id: 1, slug: "/", title: "Home" },
@@ -24,6 +27,24 @@ const Nav = () => {
         { id: 6, slug: "/local-protect", title: "Local" },
         { id: 7, slug: "/dashboard", title: "Dashboard" },
     ];
+    useEffect(() => {
+        const darkOs = window.matchMedia('(prefers-color-scheme:dark)').matches;
+        if (darkOs) setMode('Dark')
+        
+    }, [])
+
+    const switchTheme = () => {
+        if (mode == 'Dark') {
+            setMode('Light')
+            document.documentElement.classList.add("light")
+            document.documentElement.classList.remove("dark")
+        } else {
+            setMode('Dark')
+            document.documentElement.classList.add("dark")
+            document.documentElement.classList.remove("light")
+        }
+        console.log({ mode })
+    }
 
     return (
         <div className="sticky top-0 left-0 z-40">
@@ -75,7 +96,7 @@ const Nav = () => {
             </div>
 
             {/* Navigation menu */}
-            <div className="dark:bg-[#292E46] bg-opacity-80 dark:bg-opacity-80 backdrop-blur-2xl shadow-lg dark:shadow-lg dark:shadow-gray-800">
+            <div className="dark:bg-[#292E46] dark:text-gray-200 bg-opacity-80 backdrop-blur-2xl shadow-lg dark:shadow-lg dark:shadow-gray-800 flex justify-center items-center">
                 <nav className={`flex overflow-x-scroll sm:overflow-hidden whitespace-nowrap gap-1 container mx-auto py-2 px-4 ${status === 'loading' ? 'opacity-0 transition-all' : 'duration-200'}`}>
                     {navs.map((nav) => (
                         <Link key={nav.id} href={nav.slug}>
@@ -94,6 +115,7 @@ const Nav = () => {
                         Sign Out
                     </span>}
                 </nav>
+                <button className="px-2 py-1 ring-1 mr-2" onClick={switchTheme}>{mode}</button>
             </div>
         </div>
     );

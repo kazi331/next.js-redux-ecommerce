@@ -9,8 +9,8 @@ const FilterBar = () => {
     const [range, setRange] = useState(0)
     const dispatch = useDispatch();
     return (
-        <div className='m-2 flex items-center justify-around gap-4'>
-            <select defaultValue="Select Category" onChange={(e) => dispatch(filter(e.target.value))} name="category" id="category" className='outline-none rounded p-2 bg-gray-500 grow'>
+        <div className=' m-2 flex items-center justify-around gap-4'>
+            <select defaultValue="Select Category" onChange={(e) => dispatch(filter(e.target.value))} name="category" id="category" className='outline-none rounded bg-gray-50 dark:bg-gray-700 p-2  grow'>
                 <option >Select Category</option>
                 <option value="Grocery">Grocery</option>
                 <option value="Vegitable">Vegitable</option>
@@ -18,7 +18,7 @@ const FilterBar = () => {
                 <option value="Health Care">Heal Care</option>
                 <option value="">All</option>
             </select>
-            <select defaultValue="Sort By" onChange={e => dispatch(sort(e.target.value))} name="category" id="category" className='outline-none rounded p-2 bg-gray-500 grow' placeholder='Sort here'>
+            <select defaultValue="Sort By" onChange={e => dispatch(sort(e.target.value))} name="category" id="category" className='outline-none rounded bg-gray-50 dark:bg-gray-700 p-2  grow' placeholder='Sort here'>
                 <option disabled >Sort By</option>
                 <option value="default">Default</option>
                 <option value="low2high">Low to high</option>

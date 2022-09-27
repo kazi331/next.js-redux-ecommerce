@@ -30,28 +30,28 @@ const ProductDetails = () => {
     const product = products.find(product => product._id === pd);
     const { title, unit, price, type, quantity, image, _id, description, flashSale } = product;
     return (
-        <section className="text-gray-400 bg-gray-900 body-font overflow-hidden">
+        <section className="dark:text-gray-200 dark:bg-[#292E46] body-font overflow-hidden">
              <div className="container px-5 py-24 mx-auto">
                 <div className="w-full lg:w-4/5 mx-auto flex flex-wrap justify-center">
                     <div className="w-full md:w-1/2  lg:pr-10 lg:py-6 mb-6 lg:mb-0">
                         <button onClick={() => history.back()} className='flex text-sm py-1 px-2 border-[1px]  border-gray-600 mb-2 hover:text-gray-200 hover:border-gray-400 '>{chevronLeft} Back</button>
-                        <h2 className="text-sm title-font text-gray-500 tracking-widest">{type}</h2>
-                        <h1 className="text-white text-3xl title-font font-medium mb-4">{title}</h1>
+                        <h2 className="text-sm title-font dark:text-gray-400 tracking-widest">{type}</h2>
+                        <h1 className="text-3xl title-font font-medium mb-4">{title}</h1>
                         <div className="flex mb-4 cursor-pointer">
                             <a className="flex-grow text-[#10B981] border-b-2 border-[#10B981] py-2 text-lg px-1">Description</a>
-                            <a className="flex-grow border-b-2 border-gray-800 py-2 text-lg px-1">Reviews</a>
-                            <a className="flex-grow border-b-2 border-gray-800 py-2 text-lg px-1">Details</a>
+                            <a className="flex-grow border-b-2 dark:border-gray-700 py-2 text-lg px-1">Reviews</a>
+                            <a className="flex-grow border-b-2 dark:border-gray-700 py-2 text-lg px-1">Details</a>
                         </div>
                         <p className="leading-relaxed mb-4">{description}</p>
-                        <div className="flex border-t border-gray-800 py-2">
+                        <div className="flex border-t dark:border-gray-700 py-2">
                             <span className="text-gray-500">FlashSale</span>
                             <span className="ml-auto text-white">{flashSale ? 'Yes' : 'No'}</span>
                         </div>
-                        <div className="flex border-t border-gray-800 py-2">
+                        <div className="flex border-t dark:border-gray-700 py-2">
                             <span className="text-gray-500">Quantity</span>
                             <span className="ml-auto text-white">{quantity}</span>
                         </div>
-                        <div className="flex border-t border-b mb-6 border-gray-800 py-2">
+                        <div className="flex border-t border-b mb-6 dark:border-gray-700 py-2">
                             <span className="text-gray-500">Unit</span>
                             <span className="ml-auto text-white">{unit}</span>
                         </div>
@@ -65,7 +65,7 @@ const ProductDetails = () => {
                             </button>
                         </div>
                     </div>
-                    <Image height="500" width="500" alt="ecommerce" className="md:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={image} />
+                    <Image height="500" width="500" alt="ecommerce" className="md:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded shadow shadow-red-400" src={image} />
                 </div>
             </div>
         </section>

@@ -15,12 +15,12 @@ const Home = () => {
     parent.current && autoAnimate(parent.current)
   }, [parent])
 
-  const { data, status } = useSession();
+
   const showCart = useSelector(state => state.cartItems.showCart);
-  const { searchKey, category, sort } = useSelector(state => state.search);
+  const { searchKey, sort } = useSelector(state => state.search);
   const [page, setPage] = useState(0);
   const [perPage, setPerPage] = useState(60)
-  const { products, loading } = useSelector(state => state.products);
+  const { products } = useSelector(state => state.products);
   const searchedProducts = products.filter(product => product.title.toLowerCase().includes(searchKey.toLowerCase()));
   // pagination content
 
@@ -38,12 +38,12 @@ const Home = () => {
   const arr = [...Array(numOfPage).keys()];
 
   return (
-    <>
+    <div className='dark:bg-[#292E46] bg-gray-200'>
       <Head>
         <title>Next Redux Ecommerce Website</title>
         <link rel="manifest" href="/manifest.json" />
       </Head>
-      <h2 className='text-center font-bold text-3xl dark:text-gray-200 mt-10 '>All Products</h2>
+      <h2 className='text-center font-bold text-3xl dark:text-gray-200 pt-10 '>All Products</h2>
       <section className="dark:text-gray-200 body-font">
         <div className="container px-5 py-10 mx-auto">
           <FilterBar />
@@ -61,7 +61,7 @@ const Home = () => {
         </div>
       </section>
       {showCart && <CartItems />}
-    </>
+    </div>
   );
 };
 
