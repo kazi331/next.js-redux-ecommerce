@@ -15,7 +15,7 @@ const ProductDetails = () => {
         dispatch(getProducts())
     }, [dispatch])
     const { products, loading } = useSelector(state => state.products);
-  
+
 
     if (loading) {
         return (
@@ -27,11 +27,12 @@ const ProductDetails = () => {
             </div>
         )
     }
-    const { title, unit, price, type, quantity, image, description, flashSale } = products?.find(product => product._id === pd);
-   
+    const product = products?.find(product => product._id === pd);
+    const { title, unit, price, type, quantity, image, description, flashSale } = product;` `
+
     return (
         <section className="dark:text-gray-200 dark:bg-[#292E46] body-font overflow-hidden">
-             <div className="container px-5 py-24 mx-auto">
+            <div className="container px-5 py-24 mx-auto">
                 <div className="w-full lg:w-4/5 mx-auto flex flex-wrap justify-center">
                     <div className="w-full md:w-1/2  lg:pr-10 lg:py-6 mb-6 lg:mb-0">
                         <button onClick={() => history.back()} className='flex text-sm py-1 px-2 border-[1px]  border-gray-600 mb-2 hover:text-gray-200 hover:border-gray-400 '>{chevronLeft} Back</button>
@@ -66,7 +67,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
                     <div className="h-full bg-white shadow-xl rounded-xl overflow-hidden">
-                    <Image height="500" width="500" alt="ecommerce" className="md:w-1/2 w-full lg:h-auto h-64 object-cover object-center" src={image} />
+                        <Image height="500" width="500" alt="ecommerce" className="md:w-1/2 w-full lg:h-auto h-64 object-cover object-center" src={image} />
                     </div>
                 </div>
             </div>
