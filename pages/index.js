@@ -33,7 +33,7 @@ const Home = () => {
   } else if (sort === 'default') {
     sortedProducts = searchedProducts.sort(a => a)
   }
-  const paginatedProducts = sortedProducts.slice(page * perPage, (page + 1) * perPage);
+  const paginatedProducts = sortedProducts?.slice(page * perPage, (page + 1) * perPage);
 
   const arr = [...Array(numOfPage).keys()];
 
@@ -48,7 +48,7 @@ const Home = () => {
         <div className="container px-5 py-10 mx-auto">
           <FilterBar />
           <div ref={parent} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3 py-4">
-            {paginatedProducts.length < 1 ? <ProductLoading /> : paginatedProducts.map(product => <SingleProduct key={product._id} product={product} />)}
+            {paginatedProducts.length < 1 ? <ProductLoading /> : paginatedProducts?.map(product => <SingleProduct key={product._id} product={product} />)}
           </div>
 
           {/* pagination */}

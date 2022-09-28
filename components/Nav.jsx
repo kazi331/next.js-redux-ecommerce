@@ -48,8 +48,8 @@ const Nav = () => {
 
     return (
         <div className="sticky top-0 left-0 z-40">
-            <div className="bg-[#10B981] py-4">
-                <header className="flex items-center container mx-auto gap-1 md:gap-10 justify-between dark:bg-opacity-60 bg-opacity-80 backdrop-blur-xl px-4">
+            <div className="bg-[#10B981] bg-opacity-90 backdrop-blur py-4">
+                <header className="flex items-center container mx-auto gap-1 md:gap-10 justify-between  px-4">
                     <Link className="nav-link" href="/">
                         <a>
                             <span>{kachaBazar}</span>
@@ -96,7 +96,7 @@ const Nav = () => {
             </div>
 
             {/* Navigation menu */}
-            <div className="dark:bg-[#292E46] dark:text-gray-200 bg-opacity-80 backdrop-blur-2xl shadow-lg dark:shadow-lg dark:shadow-gray-800 flex justify-center items-center">
+            <div className="dark:bg-[#292E46] dark:text-gray-200 bg-opacity-80 dark:bg-opacity-90 backdrop-blur-2xl shadow-lg dark:shadow-lg dark:shadow-gray-800 flex justify-center items-center">
                 <nav className={`flex overflow-x-scroll sm:overflow-hidden whitespace-nowrap gap-1 container mx-auto py-2 px-4 ${status === 'loading' ? 'opacity-0 transition-all' : 'duration-200'}`}>
                     {navs.map((nav) => (
                         <Link key={nav.id} href={nav.slug}>
