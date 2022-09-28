@@ -21,6 +21,7 @@ const Home = () => {
   const [page, setPage] = useState(0);
   const [perPage, setPerPage] = useState(60)
   const { products } = useSelector(state => state.products);
+  console.log(products)
   const searchedProducts = products.filter(product => product.title.toLowerCase().includes(searchKey.toLowerCase()));
   // pagination content
 

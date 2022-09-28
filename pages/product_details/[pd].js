@@ -15,7 +15,7 @@ const ProductDetails = () => {
         dispatch(getProducts())
     }, [dispatch])
     const { products, loading } = useSelector(state => state.products);
-
+    console.log(products)
 
     if (loading) {
         return (
