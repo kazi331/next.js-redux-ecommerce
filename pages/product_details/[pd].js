@@ -27,7 +27,7 @@ const ProductDetails = () => {
             </div>
         )
     }
-    const product = products.find(product => product._id === pd);
+    const product = products?.find(product => product._id === pd);
     const { title, unit, price, type, quantity, image, _id, description, flashSale } = product;
     return (
         <section className="dark:text-gray-200 dark:bg-[#292E46] body-font overflow-hidden">
