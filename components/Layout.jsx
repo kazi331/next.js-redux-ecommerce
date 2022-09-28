@@ -1,7 +1,6 @@
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-import Auth from "./Auth";
 import CartItems from './CartItems';
 import Nav from './Nav';
 const Layout = ({ children, session }) => {
