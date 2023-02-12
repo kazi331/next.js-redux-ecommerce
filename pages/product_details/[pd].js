@@ -4,18 +4,15 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { chevronLeft, loadingIcon } from '../../components/icons';
-import { getProducts } from '../../redux/features/productSlice';
+
 
 const ProductDetails = () => {
     const dispatch = useDispatch();
     const [fav, setFav] = useState(false)
     const route = useRouter();
     const { pd } = route.query;
-    useEffect(() => {
-        dispatch(getProducts())
-    }, [dispatch])
-    const { products, loading } = useSelector(state => state.products);
-    console.log(products)
+       const { products, loading } = useSelector(state => state.products);
+    // console.log(products)
 
     if (loading) {
         return (
