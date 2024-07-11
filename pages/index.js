@@ -22,15 +22,15 @@ const Home = () => {
   const [perPage, setPerPage] = useState(60)
   const { products } = useSelector(state => state.products);
   console.log(products)
-  const searchedProducts = products.filter(product => product.title.toLowerCase().includes(searchKey.toLowerCase()));
+  const searchedProducts = products?.filter(product => product.title.toLowerCase().includes(searchKey.toLowerCase()));
   // pagination content
 
-  const numOfPage = Math.ceil(searchedProducts.length / perPage);
+  const numOfPage = Math.ceil(searchedProducts?.length / perPage) || 1;
   let sortedProducts = searchedProducts;
   if (sort === 'high2low') {
     sortedProducts = searchedProducts.sort((a, b) => b.price - a.price)
   } else if (sort === 'low2high') {
-    sortedProducts = searchedProducts.sort((a, b) => a.price - b.price)
+    sortedProducts = searchedProducts?.sort((a, b) => a.price - b.price)
   } else if (sort === 'default') {
     sortedProducts = searchedProducts.sort(a => a)
   }
@@ -49,12 +49,12 @@ const Home = () => {
         <div className="container px-5 py-10 mx-auto">
           <FilterBar />
           <div ref={parent} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3 py-4">
-            {paginatedProducts.length < 1 ? <ProductLoading /> : paginatedProducts?.map(product => <SingleProduct key={product._id} product={product} />)}
+            {paginatedProducts?.length < 1 ? <ProductLoading /> : paginatedProducts?.map(product => <SingleProduct key={product._id} product={product} />)}
           </div>
 
           {/* pagination */}
           <div className="mt-10 mb-6 text-center">
-            {searchedProducts.length > perPage && (
+            {searchedProducts?.length > perPage && (
               arr.map(index => <button key={index} onClick={() => setPage(index)} className={`bg-gray-500 px-2 mx-1 hover:bg-[#10B981] text-white transition-all ${page == index && 'bg-[#10B982] px-4'}`}>{index + 1}</button>)
             )}
             <PageDivider products={products} setPerPage={setPerPage} />
